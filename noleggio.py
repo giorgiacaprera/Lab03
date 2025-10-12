@@ -6,4 +6,4 @@ class Noleggio:
         self.cognome_cliente = cognome_cliente
 
     def __str__(self):
-        return f'{self.codice} - {self.data} - {self.id_automobile} - Cliente {self.cognome_cliente}'
+        return f'{self.codice} - {self.data}, {self.id_automobile} - Cliente {self.cognome_cliente}'

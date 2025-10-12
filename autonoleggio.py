@@ -19,18 +19,20 @@ class Autonoleggio:
         """Carica le auto dal file"""
         # TODO
         try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                reader = csv.reader(f)
-                for riga in reader:
-                    codice, marca, modello, anno, num_posti = riga
-                    auto = Automobile(codice, marca, modello, anno, num_posti)
-                    self.automobili.append(auto)
+            f = open(file_path, 'r')
+            righe = csv.reader(f)
+            for riga in righe:
+                codice, marca, modello, anno, num_posti = riga
+                auto = Automobile(codice, marca, modello, anno, num_posti)
+                self.automobili.append(auto)
 
-                    numero = int(codice[1:])
-                    self.prossimo_id_auto = max(self.prossimo_id_auto, numero + 1)
+                numero = int(codice[1:])
+                self.prossimo_id_auto = max(self.prossimo_id_auto, numero + 1)
 
         except FileNotFoundError:
             print(f'Errore: il file {file_path} non esiste')
+
+        f.close()
 
 
 
@@ -61,7 +63,7 @@ class Autonoleggio:
             if a.codice == id_automobile:
                 auto = a
         if auto is None:
-            raise Exception(f'Automobile {id_automobile} non trovata')
+            raise Exception(f'Automobile {id_automobile} non trovata')\
 
         for n in self.noleggi:
             if n.id_automobile == id_automobile:
